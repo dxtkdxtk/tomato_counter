@@ -14,15 +14,14 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -32,11 +31,10 @@ class Ui_tomato_counterClass
 public:
     QWidget *centralWidget;
     QGridLayout *gridLayout;
-    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
     QPushButton *startButton;
     QPushButton *stopButton;
     QPushButton *exitButton;
-    QSpacerItem *horizontalSpacer;
     QLCDNumber *timeCounter;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -53,9 +51,9 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(6);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         startButton = new QPushButton(centralWidget);
         startButton->setObjectName(QStringLiteral("startButton"));
         QFont font;
@@ -63,26 +61,22 @@ public:
         font.setPointSize(12);
         startButton->setFont(font);
 
-        verticalLayout->addWidget(startButton);
+        horizontalLayout->addWidget(startButton);
 
         stopButton = new QPushButton(centralWidget);
         stopButton->setObjectName(QStringLiteral("stopButton"));
         stopButton->setFont(font);
 
-        verticalLayout->addWidget(stopButton);
+        horizontalLayout->addWidget(stopButton);
 
         exitButton = new QPushButton(centralWidget);
         exitButton->setObjectName(QStringLiteral("exitButton"));
         exitButton->setFont(font);
 
-        verticalLayout->addWidget(exitButton);
+        horizontalLayout->addWidget(exitButton);
 
 
-        gridLayout->addLayout(verticalLayout, 4, 0, 1, 1);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer, 4, 1, 1, 1);
+        gridLayout->addLayout(horizontalLayout, 5, 2, 1, 1);
 
         timeCounter = new QLCDNumber(centralWidget);
         timeCounter->setObjectName(QStringLiteral("timeCounter"));
@@ -92,7 +86,7 @@ public:
         timeCounter->setProperty("value", QVariant(0));
         timeCounter->setProperty("intValue", QVariant(0));
 
-        gridLayout->addWidget(timeCounter, 4, 3, 1, 1);
+        gridLayout->addWidget(timeCounter, 4, 2, 1, 1);
 
         tomato_counterClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(tomato_counterClass);

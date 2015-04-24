@@ -106,7 +106,6 @@ protected:
                 stop_ = false;
                 ChangeStatus();
             }
-            ui_->timeCounter->display("00:00");
         }
     }
 private:
